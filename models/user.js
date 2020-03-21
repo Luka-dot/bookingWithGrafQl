@@ -12,7 +12,7 @@ const userSchema = new Schema({
         required: true
     },
     // each user can create multiple events. therefor use [] inside create single model {}
-    // only storing IDs with sintax below 
+    // only storing IDs with syntax below 
     createdEvents: [
         {
             type: Schema.Types.ObjectId,

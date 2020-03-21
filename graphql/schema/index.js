@@ -6,6 +6,14 @@ const { buildSchema } = require('graphql');
 /* RootQuery: ! inside [] ensure array wont be null. ! outside ensure return wont be null  returns array of Events */
 /* RootMutation: expected value 'name' type is string and returns Event we just created */
 module.exports = buildSchema(`
+type Booking {
+    _id: ID!
+    event: Event!
+    user: User!
+    createdAt: String!
+    updatedAt: String!
+}
+
 type Event {
     _id: ID!
     title: String!
@@ -36,11 +44,14 @@ input UserInput {
 
 type RootQuery {
     events: [Event!]!
+    bookings: [Booking!]
 }
 
 type RootMutation {
     createEvent(eventInput: EventInput): Event
     createUser(userInput: UserInput): User
+    bookEvent(eventId: ID!): Booking! 
+    cancelBooking(bookingId: ID!): Event!
 }
 
 schema {

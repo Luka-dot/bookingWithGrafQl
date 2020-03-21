@@ -1,9 +1,50 @@
 import React, { Component } from 'react';
 
+import Modal from '../components/modal/modal';
+import Backdrop from '../components/backdrop/backdrop';
+import './events.css';
+
 class EventsPage extends Component {
-    render() {
-        return <h1>The Events Page</h1>;
-    }
+  state = {
+    creating: false
+  };
+
+  startCreateEventHandler = () => {
+    this.setState({ creating: true });
+  };
+
+  modalConfirmHandler = () => {
+    this.setState({ creating: false });
+  };
+
+  modalCancelHandler = () => {
+    this.setState({ creating: false });
+  };
+
+  render() {
+    return (
+      <React.Fragment>
+        {this.state.creating && <Backdrop />}
+        {this.state.creating && (
+          <Modal
+            title="Add Event"
+            canCancel
+            canConfirm
+            onCancel={this.modalCancelHandler}
+            onConfirm={this.modalConfirmHandler}
+          >
+            <p>Modal Content</p>
+          </Modal>
+        )}
+        <div className="events-control">
+          <p>Share your own Events!</p>
+          <button className="btn" onClick={this.startCreateEventHandler}>
+            Create Event
+          </button>
+        </div>
+      </React.Fragment>
+    );
+  }
 }
 
 export default EventsPage;

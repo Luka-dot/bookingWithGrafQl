@@ -8,7 +8,7 @@ import MainNavigation from './components/navigation/mainNavigation';
 import AuthContext from './context/auth-context';
 
 import './App.css';
-
+// storing token here and distributing it thru AuthContext to other components 
 class App extends Component {
   state = {
     token: null,
